@@ -59,20 +59,19 @@ function dropItem(e) {
         const item = document.getElementById(id);
         e.target.appendChild(item);
         e.target.classList.add("correct");
+
         score++;
         scoreDisplay.textContent = score;
 
         message.innerHTML = "✅ Correcto";
         message.style.color = "#00ff99";
 
-        // 🏆 Gana si completa todo
         if (score === items.length) {
             clearInterval(countdown);
             endGame(true);
         }
 
     } else {
-        // ❌ INCORRECTO
         message.innerHTML = "❌ Incorrecto";
         message.style.color = "red";
     }
