@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego Drag & Drop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎮 Juego Arrastrar y Soltar</h1>
+<p>Arrastra cada figura a su caja correcta</p>
+
+<h2>Puntos: <span id="score">0</span></h2>
+<h2>Tiempo: <span id="timer">60</span> segundos</h2>
+
+<div id="message"></div>
+
+<div class="game-container">
+
+    <!-- OPCIONES (izquierda) -->
+    <div class="items">
+        <div class="drag-item" draggable="true" id="verde" data-match="verde">🟢</div>
+        <div class="drag-item" draggable="true" id="naranja" data-match="naranja">🟠</div>
+        <div class="drag-item" draggable="true" id="azul" data-match="azul">🔵</div>
+        <div class="drag-item" draggable="true" id="rojo" data-match="rojo">🔴</div>
+        <div class="drag-item" draggable="true" id="morado" data-match="morado">🟣</div>
+        <div class="drag-item" draggable="true" id="amarillo" data-match="amarillo">🟡</div>
+    </div>
+
+    <!-- RESPUESTAS (derecha) -->
+    <div class="dropzones">
+        <div class="dropzone" data-match="rojo">Caja Roja</div>
+        <div class="dropzone" data-match="azul">Caja Azul</div>
+        <div class="dropzone" data-match="verde">Caja Verde</div>
+        <div class="dropzone" data-match="amarillo">Caja Amarilla</div>
+        <div class="dropzone" data-match="morado">Caja Morada</div>
+        <div class="dropzone" data-match="naranja">Caja Naranja</div>
+    </div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
