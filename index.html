@@ -1,60 +1,80 @@
-<div class="game-container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego - Arquitectura de Computadores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    <!-- CONCEPTOS (izquierda) -->
-    <div class="items">
-        <div class="drag-item" draggable="true" id="tiempo" data-match="tiempo">
-            Tiempo de Acceso
+    <h1>Relaciona el Concepto con su Definición</h1>
+
+    <div class="game-container">
+
+        <!-- CONCEPTOS -->
+        <div class="items">
+            <div class="drag-item" draggable="true" data-match="tiempo">
+                Tiempo de Acceso
+            </div>
+
+            <div class="drag-item" draggable="true" data-match="cache">
+                Memoria Caché
+            </div>
+
+            <div class="drag-item" draggable="true" data-match="registro">
+                Registro
+            </div>
+
+            <div class="drag-item" draggable="true" data-match="arquitectura">
+                Arquitectura de Computador
+            </div>
+
+            <div class="drag-item" draggable="true" data-match="aleatorio">
+                Acceso Aleatorio
+            </div>
+
+            <div class="drag-item" draggable="true" data-match="secuencial">
+                Acceso Secuencial
+            </div>
         </div>
 
-        <div class="drag-item" draggable="true" id="cache" data-match="cache">
-            Memoria Caché
+        <!-- DEFINICIONES -->
+        <div class="dropzones">
+
+            <div class="dropzone" data-match="registro">
+                Unidad pequeña y rápida dentro del procesador
+            </div>
+
+            <div class="dropzone" data-match="cache">
+                Memoria rápida que almacena datos frecuentes
+            </div>
+
+            <div class="dropzone" data-match="arquitectura">
+                Diseño y organización interna del computador
+            </div>
+
+            <div class="dropzone" data-match="aleatorio">
+                Permite acceder directamente a cualquier posición
+            </div>
+
+            <div class="dropzone" data-match="secuencial">
+                Se accede a los datos en orden consecutivo
+            </div>
+
+            <div class="dropzone" data-match="tiempo">
+                Tiempo que tarda en accederse a un dato
+            </div>
+
         </div>
 
-        <div class="drag-item" draggable="true" id="registro" data-match="registro">
-            Registro
-        </div>
-
-        <div class="drag-item" draggable="true" id="arquitectura" data-match="arquitectura">
-            Arquitectura de Computador
-        </div>
-
-        <div class="drag-item" draggable="true" id="aleatorio" data-match="aleatorio">
-            Acceso Aleatorio
-        </div>
-
-        <div class="drag-item" draggable="true" id="secuencial" data-match="secuencial">
-            Acceso Secuencial
-        </div>
     </div>
 
-
-    <!-- DEFINICIONES (derecha) -->
-    <div class="dropzones">
-
-        <div class="dropzone" data-match="registro">
-            Unidad pequeña y rápida dentro del procesador
-        </div>
-
-        <div class="dropzone" data-match="cache">
-            Memoria rápida que almacena datos frecuentes
-        </div>
-
-        <div class="dropzone" data-match="arquitectura">
-            Diseño y organización interna del computador
-        </div>
-
-        <div class="dropzone" data-match="aleatorio">
-            Permite acceder directamente a cualquier posición
-        </div>
-
-        <div class="dropzone" data-match="secuencial">
-            Se accede a los datos en orden consecutivo
-        </div>
-
-        <div class="dropzone" data-match="tiempo">
-            Tiempo que tarda en accederse a un dato
-        </div>
-
+    <div class="score-container">
+        <p>Puntaje: <span id="score">0</span></p>
+        <button onclick="reiniciarJuego()">Reiniciar</button>
     </div>
 
-</div>
+    <script src="script.js"></script>
+
+</body>
+</html>
