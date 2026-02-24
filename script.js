@@ -1,94 +1,52 @@
+const dragItems = document.querySelectorAll('.drag-item');
+const dropzones = document.querySelectorAll('.dropzone');
 let score = 0;
-let timeLeft = 60;
-let gameActive = true;
 
-const scoreDisplay = document.getElementById("score");
-const timerDisplay = document.getElementById("timer");
-const message = document.getElementById("message");
-
-const items = document.querySelectorAll(".drag-item");
-const dropzones = document.querySelectorAll(".dropzone");
-
-// ⏳ TEMPORIZADOR
-const countdown = setInterval(() => {
-    if (!gameActive) return;
-
-    timeLeft--;
-    timerDisplay.textContent = timeLeft;
-
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        endGame(false);
-    }
-}, 1000);
-
-items.forEach(item => {
-    item.addEventListener("dragstart", dragStart);
+dragItems.forEach(item => {
+    item.addEventListener('dragstart', dragStart);
 });
 
 dropzones.forEach(zone => {
-    zone.addEventListener("dragover", dragOver);
-    zone.addEventListener("drop", dropItem);
-    zone.addEventListener("dragleave", dragLeave);
+    zone.addEventListener('dragover', dragOver);
+    zone.addEventListener('drop', dropItem);
 });
 
 function dragStart(e) {
-    if (!gameActive) return;
     e.dataTransfer.setData("text", e.target.dataset.match);
-    e.dataTransfer.setData("id", e.target.id);
 }
 
 function dragOver(e) {
     e.preventDefault();
-    if (!gameActive) return;
-    e.target.classList.add("hovered");
-}
-
-function dragLeave(e) {
-    e.target.classList.remove("hovered");
 }
 
 function dropItem(e) {
     e.preventDefault();
-    if (!gameActive) return;
 
-    const match = e.dataTransfer.getData("text");
-    const id = e.dataTransfer.getData("id");
+    const draggedData = e.dataTransfer.getData("text");
+    const dropMatch = e.target.dataset.match;
 
-    if (match === e.target.dataset.match) {
-        const item = document.getElementById(id);
-        e.target.appendChild(item);
+    if (draggedData === dropMatch) {
         e.target.classList.add("correct");
+        e.target.classList.remove("incorrect");
 
         score++;
-        scoreDisplay.textContent = score;
-
-        message.innerHTML = "✅ Correcto";
-        message.style.color = "#00ff99";
-
-        if (score === items.length) {
-            clearInterval(countdown);
-            endGame(true);
-        }
+        document.getElementById("score").textContent = score;
 
     } else {
-        message.innerHTML = "❌ Incorrecto";
-        message.style.color = "red";
-    }
+        e.target.classList.add("incorrect");
 
-    e.target.classList.remove("hovered");
+        setTimeout(() => {
+            e.target.classList.remove("incorrect");
+        }, 1000);
+    }
 }
 
-function endGame(win) {
-    gameActive = false;
+function reiniciarJuego() {
+    score = 0;
+    document.getElementById("score").textContent = score;
 
-    if (win) {
-        message.innerHTML = "🎉 ¡GANASTE!";
-        message.style.color = "#00ff99";
-    } else {
-        message.innerHTML = "⏰ PERDISTE - Se acabó el tiempo";
-        message.style.color = "red";
-    }
-
-    items.forEach(item => item.setAttribute("draggable", false));
+    dropzones.forEach(zone => {
+        zone.classList.remove("correct");
+        zone.classList.remove("incorrect");
+    });
 }
